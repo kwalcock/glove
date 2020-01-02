@@ -10,7 +10,8 @@ lazy val core = (project in file("."))
 // The resource is presumed to be too large for both GitHub and Maven, so it is copied
 // in from an external directory.  This needs to be configured before release.
 mappings in (Compile, packageBin) ++= Seq(
-  file("../eidos/eidos-clone/resource/glove.840B.300d.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
+//  file("../eidos/eidos-clone/resource/glove.840B.300d.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
+  file("../resource.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
 )
 
 publishMavenStyle := true
