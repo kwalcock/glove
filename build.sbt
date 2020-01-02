@@ -27,8 +27,8 @@ publishTo := {
   Some("Artifactory Realm" at location)
 }
 
-// credentials += Credentials("Artifactory Realm", "localhost", "kwalcock", "APAgSddqWKTn2e9sJF73VPd46Zs")
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+// credentials += Credentials("Artifactory Realm", "<host>", "<user>", "<password>")
 // The above credentials are recorded in ~/.sbt/.credentials as such:
 // realm=Artifactory Realm
 // host=<host>
