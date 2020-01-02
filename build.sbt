@@ -10,7 +10,7 @@ lazy val core = (project in file("."))
 // The resource is presumed to be too large for both GitHub and Maven, so it is copied
 // in from an external directory.  This needs to be configured before release.
 mappings in (Compile, packageBin) ++= Seq(
-//  file("../eidos/eidos-clone/resource/glove.840B.300d.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
+//  file("../eidos/eidos-clone/resources/glove.840B.300d.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
   file("../resource.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
 )
 
@@ -18,14 +18,17 @@ publishMavenStyle := true
 
 publishTo := {
   val artifactory = "http://localhost:8081/artifactory/"
-  
-  if (isSnapshot.value)
-    Some("Artifactory Realm" at artifactory + "sbt-release-local;build.timestamp=" + new java.util.Date().getTime)
-  else
-    Some("Artifactory Realm" at artifactory + "sbt-release-local")
+  val repository = "sbt-release-local"
+  val details =
+      if (isSnapshot.value) ";build.timestamp=" + new java.util.Date().getTime
+      else ""
+  val location = artifactory + repository + details
+
+  Some("Artifactory Realm" at location)
 }
 
-// credentials += Credentials("Artifactory Realm", "<host>", "<user>", "<password>")
+// credentials += Credentials("Artifactory Realm", "localhost", "kwalcock", "APAgSddqWKTn2e9sJF73VPd46Zs")
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 // The above credentials are recorded in ~/.sbt/.credentials as such:
 // realm=Artifactory Realm
 // host=<host>
