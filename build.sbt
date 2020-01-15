@@ -1,6 +1,6 @@
 import ReleaseTransformations._
 
-name := "glove"
+name := "glove_42B_300d"
 organization := "org.clulab"
 
 crossPaths := false // This is a resource only and is independent of Scala version.
@@ -10,14 +10,13 @@ lazy val core = (project in file("."))
 // The resource is presumed to be too large for both GitHub and Maven, so it is copied
 // in from an external directory.  This needs to be configured before release.
 mappings in (Compile, packageBin) ++= Seq(
-  file("../eidos/eidos-clone/resources/glove.840B.300d.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
-//  file("../resource.txt") -> "org/clulab/wm/eidos/english/w2v/glove.840B.300d.txt"
+  file("./resources/glove.short") -> "org/clulab/glove/glove.42B.300d.txt"
 )
 
 publishMavenStyle := true
 
 publishTo := {
-  val artifactory = "http://localhost:8081/artifactory/"
+  val artifactory = "http://river.cs.arizona.edu:8081/artifactory/"
   val repository = "sbt-release-local"
   val details =
       if (isSnapshot.value) ";build.timestamp=" + new java.util.Date().getTime
@@ -46,28 +45,28 @@ pomIncludeRepository := { _ => false }
 // addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "2.3")
 // This produced
 // <scm>
-//     <url>https://github.com/clulab/glove</url>
-//     <connection>scm:git:https://github.com/clulab/glove.git</connection>
-//     <developerConnection>scm:git:git@github.com:clulab/glove.git</developerConnection>
+//     <url>https://github.com/clulab/resource</url>
+//     <connection>scm:git:https://github.com/clulab/resource.git</connection>
+//     <developerConnection>scm:git:git@github.com:clulab/resource.git</developerConnection>
 // </scm>
 // that must be automatically generated and a duplicate
 // <scm>
-//     <url>https://github.com/clulab/glove</url>
-//     <connection>https://github.com/clulab/glove</connection>
+//     <url>https://github.com/clulab/resource</url>
+//     <connection>https://github.com/clulab/resource</connection>
 // </scm>
 // Judging from this, the scmInfo is collected automatically, perhaps by
 // addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.9.3")
 // However, the developerConnection is undesired, so this is used:
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/clulab/glove"),
-    "scm:git:https://github.com/clulab/glove.git"
+    url("https://github.com/clulab/glove_42B_300d"),
+    "scm:git:https://github.com/clulab/glove_42B_300d.git"
   )
 )
 
 // This must be added to add to the pom for publishing.
 pomExtra :=
-  <url>https://github.com/clulab/glove</url>
+  <url>https://github.com/clulab/glove_42B_300d</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -76,8 +75,8 @@ pomExtra :=
     </license>
   </licenses>
   <!--scm>
-    <url>https://github.com/clulab/glove</url>
-    <connection>https://github.com/clulab/glove</connection>
+    <url>https://github.com/clulab/glove_42B_300d</url>
+    <connection>https://github.com/clulab/glove_42B_300d</connection>
   </scm-->
   <developers>
     <developer>
