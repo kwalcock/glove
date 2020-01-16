@@ -1,6 +1,6 @@
 import ReleaseTransformations._
 
-name := "glove_42B_300d"
+name := "glove.42b.300d"
 organization := "org.clulab"
 
 crossPaths := false // This is a resource only and is independent of Scala version.
@@ -10,7 +10,7 @@ lazy val core = (project in file("."))
 // The resource is presumed to be too large for both GitHub and Maven, so it is copied
 // in from an external directory.  This needs to be configured before release.
 mappings in (Compile, packageBin) ++= Seq(
-  file("./resources/glove.short") -> "org/clulab/glove/glove.42B.300d.txt"
+  file("./resources/glove.42B.300d.txt") -> "org/clulab/glove/glove.42B.300d.txt"
 )
 
 publishMavenStyle := true
@@ -59,14 +59,14 @@ pomIncludeRepository := { _ => false }
 // However, the developerConnection is undesired, so this is used:
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/clulab/glove_42B_300d"),
-    "scm:git:https://github.com/clulab/glove_42B_300d.git"
+    url("https://github.com/clulab/glove.42b.300d"),
+    "scm:git:https://github.com/clulab/glove.42b.300d.git"
   )
 )
 
 // This must be added to add to the pom for publishing.
 pomExtra :=
-  <url>https://github.com/clulab/glove_42B_300d</url>
+  <url>https://github.com/clulab/glove.42b.300d</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -75,8 +75,8 @@ pomExtra :=
     </license>
   </licenses>
   <!--scm>
-    <url>https://github.com/clulab/glove_42B_300d</url>
-    <connection>https://github.com/clulab/glove_42B_300d</connection>
+    <url>https://github.com/clulab/glove.42b.300d</url>
+    <connection>https://github.com/clulab/glove.42b.300d</connection>
   </scm-->
   <developers>
     <developer>
